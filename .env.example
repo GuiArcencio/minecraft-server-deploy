@@ -1,0 +1,4 @@
+NOIP_USERNAME=
+NOIP_PASSWORD=
+NOIP_HOSTNAMES=
+NOIP_IP_METHOD=http://ip1.dynupdate6.no-ip.com/
