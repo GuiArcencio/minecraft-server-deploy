@@ -2,34 +2,16 @@ services:
   nginx:
     build:
       context: ./nginx
-    restart: on-failure
     ports:
       - 19132:19132/udp
     depends_on:
       - bedrock-server
 
   bedrock-server:
-    image: itzg/minecraft-bedrock-server
+    build:
+      context: .
     volumes:
-      - minecraft_data:/data
-    env_file:
-      - ./server-properties.env
+      - ./server:/server
+    command: ./bedrock_server
     stdin_open: true
     tty: true
-
-  ddns:
-    image: ghcr.io/noipcom/noip-duc:latest
-    env_file:
-      - ./.env
-    networks:
-      - ipv6net
-
-volumes:
-  minecraft_data:
-
-networks:
-  ipv6net:
-    enable_ipv6: true
-    ipam:
-      config:
-        - subnet: 2001:db8::/64
