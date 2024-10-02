@@ -2,6 +2,7 @@ services:
   nginx:
     build:
       context: ./nginx
+    container_name: bedrock-nginx
     ports:
       - 19132:19132/udp
     depends_on:
@@ -10,6 +11,7 @@ services:
   bedrock-server:
     build:
       context: .
+    container_name: bedrock-server
     volumes:
       - ./server:/server
     command: ./bedrock_server
